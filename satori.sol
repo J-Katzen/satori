@@ -65,6 +65,7 @@ contract Satori is satoris {
         symbol = 'SAT';                                     // SATs
         decimals = 0;                                       // Round numbers bitch
         illuminati[0x662f46ec437916b181f0ced5cef1ed43a10d859a] = SatoriIlluminati('Satori', 0); // The Satori Himself
+        SatoriIlluminatiConfirmed(0x662f46ec437916b181f0ced5cef1ed43a10d859a, 'Satori');
     }
 
     // Be wary of being banned...
@@ -117,7 +118,7 @@ contract Satori is satoris {
     // Identify yourself...
     function setAlias(string alias) notBanned isIlluminati {
         illuminati[msg.sender].name = alias;
-        SatoriIlluminatiIdentified(msg.sender, alias);
+        SatoriIlluminatiConfirmed(msg.sender, alias);
     }
 
     // WTF?!
