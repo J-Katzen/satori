@@ -124,8 +124,12 @@ contract Satori is satoris {
     }
 
     // Identify yourself...
-    function setAlias(string alias) notBanned isIlluminati {
-        illuminati[msg.sender].name = alias;
+    function setAlias(string alias) notBanned {
+        if (bytes(illuminati[msg.sender].name).length == 0) {
+            illuminati[msg.sender] = SatoriIlluminati(alias, 0);
+        } else {
+            illuminati[msg.sender].name = alias;
+        }
         SatoriIlluminatiConfirmed(msg.sender, alias);
     }
 
