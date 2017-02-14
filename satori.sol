@@ -76,7 +76,7 @@ contract Satori is satoris {
 
     // Illuminati Only...
     modifier isIlluminati {
-        if (!illuminati[msg.sender]) throw;
+        if (illuminati[msg.sender].name == 0) throw;
         _;
     }
 
@@ -104,7 +104,7 @@ contract Satori is satoris {
     function transfer(address _to, uint256 _value) notBanned isIlluminati {
         if (_value < 0) throw;                               // Cannot transfer negative balance
         // setup the new following...
-        if (!illuminati[_to]) {
+        if (illuminati[_to].name == 0) {
             illuminati[_to] = SatoriIlluminati('New Follower', 0);
         }
 
