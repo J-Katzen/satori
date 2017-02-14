@@ -3,20 +3,21 @@ pragma solidity ^0.4.2;
 // I'd have an apostrophe s...but programming
 contract satoris {
     // other owners of the Satori economy...if he deems fit
+    address public satoriWallet;
     mapping (address => bool) private owners;
 
     function satoris() {
-        owners[0x662f46ec437916b181f0ced5cef1ed43a10d859a] = true;     //Forever Satori's Coin -- hardcoded this shit
+        satoriWallet = 0x662f46ec437916b181f0ced5cef1ed43a10d859a;     //Forever Satori's Coin -- hardcoded this shit
     }
 
     modifier onlyOwners {
-        if (!owners[msg.sender]) throw;
+        if (!owners[msg.sender] && msg.sender != satoriWallet) throw;
         _;
     }
 
     // The onlySatori modifier ;)
     modifier onlySatori {
-        if (msg.sender != 0x662f46ec437916b181f0ced5cef1ed43a10d859a) throw;
+        if (msg.sender != satoriWallet) throw;
         _;
     }
 
@@ -56,6 +57,7 @@ contract Satori is satoris {
     event BanHammer(address indexed banner, address indexed hammered);
     event BanLifted(address indexed lifter, address indexed unhammered);
     event SatoriIlluminatiConfirmed(address indexed member, string alias);
+    event TransferIlluminatiOwnership(address indexed oldAddress, address indexed newAddress);
 
     // The constructor...where it all began
     // Hard coding for assurance that this coin will not be tampered with
@@ -100,6 +102,12 @@ contract Satori is satoris {
         BanLifted(msg.sender, unbannedAddress);
     }
 
+    function changeSatoriAddress(address newSatori) onlySatori {
+        illuminati[newSatori] = SatoriIlluminati(illuminati[satoriWallet].name, illuminati[satoriWallet].satoriBalance);
+        delete illuminati[satoriWallet];
+        satoriWallet = newSatori;
+    }
+
     // Only through trade can the Satori market flourish
     function transfer(address _to, uint256 _value) notBanned isIlluminati {
         if (_value < 0) throw;                               // Cannot transfer negative balance
@@ -119,6 +127,12 @@ contract Satori is satoris {
     function setAlias(string alias) notBanned isIlluminati {
         illuminati[msg.sender].name = alias;
         SatoriIlluminatiConfirmed(msg.sender, alias);
+    }
+
+    function transferIlluminatiAddressOwnership(address newAddress) notBanned isIlluminati {
+        illuminati[newAddress] = SatoriIlluminati(illuminati[msg.sender].name, illuminati[msg.sender].satoriBalance);
+        delete illuminati[msg.sender];
+        TransferIlluminatiOwnership(msg.sender, newAddress);
     }
 
     // WTF?!
