@@ -48,14 +48,9 @@ contract Satori is satoris {
     event BanLifted(address indexed lifter, address index unhammered);
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function Satori(
-        uint256 initialSupply,
-        string tokenName,
-        uint8 decimalUnits,
-        string tokenSymbol
-        ) {
+    function Satori() {
         balanceOf[msg.sender] = 0;                          // Give the creator all initial tokens
-        totalSupply = initialSupply;                        // Update total supply
+        totalSupply = 0;                        // Update total supply
         name = 'Satori';                                    // Satoris
         symbol = 'SAT';                                     // SATs
         decimals = 0;                                       // Round numbers bitch
