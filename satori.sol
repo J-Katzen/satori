@@ -60,7 +60,6 @@ contract Satori is satoris {
     // The constructor...where it all began
     // Hard coding for assurance that this coin will not be tampered with
     function Satori() {
-        balanceOf[msg.sender] = 0;                          // Give the creator all initial tokens
         totalSupply = 0;                        // Update total supply
         name = 'Satori';                                    // Satoris
         symbol = 'SAT';                                     // SATs
@@ -82,7 +81,7 @@ contract Satori is satoris {
 
     // What can owners do?  Mint SATs of course.
     function mintSatoris(address target, uint256 mintedAmount) onlyOwners {
-        balanceOf[target] += mintedAmount;
+        illuminati[target].satoriBalance += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, msg.sender, mintedAmount);
         Transfer(msg.sender, target, mintedAmount);
