@@ -80,11 +80,6 @@ contract Satori is satoris {
         _;
     }
 
-    // First time participant setup
-    modifier newIlluminati {
-
-    }
-
     // What can owners do?  Mint SATs of course.
     function mintSatoris(address target, uint256 mintedAmount) onlyOwners {
         balanceOf[target] += mintedAmount;
@@ -121,7 +116,7 @@ contract Satori is satoris {
     }
 
     // Identify yourself...
-    function setAlias(string alias) notBanned {
+    function setAlias(string alias) notBanned isIlluminati {
         illuminati[msg.sender].name = alias;
         SatoriIlluminatiIdentified(msg.sender, alias);
     }
