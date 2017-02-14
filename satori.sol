@@ -6,8 +6,8 @@ contract satoris {
     address public satoriWallet;
     mapping (address => bool) private owners;
 
-    function satoris() {
-        satoriWallet = 0x662f46ec437916b181f0ced5cef1ed43a10d859a;     //Forever Satori's Coin -- hardcoded this shit
+    function satoris(address walletAddress) {
+        satoriWallet = walletAddress;     //Forever Satori's Coin -- hardcoded this shit
     }
 
     modifier onlyOwners {
@@ -61,13 +61,13 @@ contract Satori is satoris {
 
     // The constructor...where it all began
     // Hard coding for assurance that this coin will not be tampered with
-    function Satori() {
-        totalSupply = 0;                        // Update total supply
+    function Satori(address walletAddress) satoris (walletAddress) {
+        totalSupply = 1000;                        // Update total supply
         name = 'Satori';                                    // Satoris
         symbol = 'SAT';                                     // SATs
         decimals = 0;                                       // Round numbers bitch
-        illuminati[0x662f46ec437916b181f0ced5cef1ed43a10d859a] = SatoriIlluminati('Satori', 0); // The Satori Himself
-        SatoriIlluminatiConfirmed(0x662f46ec437916b181f0ced5cef1ed43a10d859a, 'Satori');
+        illuminati[satoriWallet] = SatoriIlluminati('Satori', 1000); // The Satori Himself
+        SatoriIlluminatiConfirmed(satoriWallet, 'Satori');
     }
 
     // Be wary of being banned...
@@ -109,7 +109,7 @@ contract Satori is satoris {
     }
 
     // Only through trade can the Satori market flourish
-    function transfer(address _to, uint256 _value) notBanned isIlluminati {
+    function transfer(address _to, uint256 _value) payable notBanned isIlluminati {
         if (_value < 0) throw;                               // Cannot transfer negative balance
         // setup the new following...
         if (bytes(illuminati[_to].name).length == 0) {

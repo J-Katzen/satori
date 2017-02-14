@@ -1,0 +1,349 @@
+[
+  {
+    "constant": true,
+    "inputs": [
+
+    ],
+    "name": "name",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "value": "Satori"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+
+    ],
+    "name": "satoriWallet",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "value": "0x662f46ec437916b181f0ced5cef1ed43a10d859a"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+
+    ],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "value": "0"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "bannedAddress",
+        "type": "address"
+      }
+    ],
+    "name": "banHammer",
+    "outputs": [
+
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+
+    ],
+    "name": "decimals",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "value": "0"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+
+    ],
+    "name": "version",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "value": "Satori v0.2b-rc21"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "illuminati",
+    "outputs": [
+      {
+        "name": "name",
+        "type": "string",
+        "value": ""
+      },
+      {
+        "name": "satoriBalance",
+        "type": "uint256",
+        "value": "0"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "alias",
+        "type": "string"
+      }
+    ],
+    "name": "setAlias",
+    "outputs": [
+
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+
+    ],
+    "name": "symbol",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "value": "SAT"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "banned",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "value": false
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_value",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+
+    ],
+    "payable": true,
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "unbannedAddress",
+        "type": "address"
+      }
+    ],
+    "name": "banLifted",
+    "outputs": [
+
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "target",
+        "type": "address"
+      },
+      {
+        "name": "mintedAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "mintSatoris",
+    "outputs": [
+
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "newAddress",
+        "type": "address"
+      }
+    ],
+    "name": "transferIlluminatiAddressOwnership",
+    "outputs": [
+
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "walletAddress",
+        "type": "address",
+        "index": 0,
+        "typeShort": "address",
+        "bits": "",
+        "displayName": "wallet Address",
+        "template": "elements_input_address",
+        "value": "0x662f46ec437916b181f0ced5cef1ed43a10d859a"
+      }
+    ],
+    "payable": false,
+    "type": "constructor"
+  },
+  {
+    "payable": false,
+    "type": "fallback"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "banner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "hammered",
+        "type": "address"
+      }
+    ],
+    "name": "BanHammer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "lifter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "unhammered",
+        "type": "address"
+      }
+    ],
+    "name": "BanLifted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "member",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "alias",
+        "type": "string"
+      }
+    ],
+    "name": "SatoriIlluminatiConfirmed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "oldAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newAddress",
+        "type": "address"
+      }
+    ],
+    "name": "TransferIlluminatiOwnership",
+    "type": "event"
+  }
+]
