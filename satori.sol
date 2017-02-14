@@ -1,14 +1,11 @@
 pragma solidity ^0.4.2;
 
-// A participant in the great Satori economy!
-contract SatoriRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
-
 // I'd have an apostrophe s...but programming
 contract satoris {
     // other owners of the Satori economy...if he deems fit
     mapping (address => bool) private owners;
 
-    public function owned() {
+    function satoris() {
         owners[0x662f46ec437916b181f0ced5cef1ed43a10d859a] = true;     //Forever Satori's Coin -- hardcoded this shit
     }
 
@@ -51,8 +48,8 @@ contract Satori is satoris {
 
     /* This generates a public event on the blockchain that will notify clients */
     event Transfer(address indexed from, address indexed to, uint256 value);
-    event BanHammer(address indexed banner, address index hammered);
-    event BanLifted(address indexed lifter, address index unhammered);
+    event BanHammer(address indexed banner, address indexed hammered);
+    event BanLifted(address indexed lifter, address indexed unhammered);
 
     // The constructor...where it all began
     // Hard coding for assurance that this coin will not be tampered with
@@ -65,14 +62,14 @@ contract Satori is satoris {
     }
 
     // Be wary of being banned...
-    modifier nonBanned {
+    modifier notBanned {
         if (banned[msg.sender]) throw;
         _;
     }
 
     // What can owners do?  Mint SATs of course.
     function mintSatoris(address target, uint256 mintedAmount) onlyOwners {
-        balaneceOf[target] += mintedAmount;
+        balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, msg.sender, mintedAmount);
         Transfer(msg.sender, target, mintedAmount);
@@ -86,7 +83,7 @@ contract Satori is satoris {
 
     // Or be benevolent leaders
     function banLifted(address unbannedAddress) onlyOwners {
-        delete banned[bannedAddress];
+        delete banned[unbannedAddress];
         BanLifted(msg.sender, unbannedAddress);
     }
 
