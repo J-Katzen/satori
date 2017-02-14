@@ -41,15 +41,21 @@ contract Satori is satoris {
     uint8 public decimals;
     uint256 public totalSupply;
 
-    /* This creates an array with all balances */
-    mapping (address => uint256) public balanceOf;
+    struct SatoriIlluminati {
+        string      name;
+        uint256     satoriBalance;
+    }
+
     // banned peeps
     mapping (address => bool) public banned;
+    // the illuminati of Satoris
+    mapping (address => SatoriIlluminati) public illuminati;
 
     /* This generates a public event on the blockchain that will notify clients */
     event Transfer(address indexed from, address indexed to, uint256 value);
     event BanHammer(address indexed banner, address indexed hammered);
     event BanLifted(address indexed lifter, address indexed unhammered);
+    event SatoriIlluminatiConfirmed(address indexed member, string alias);
 
     // The constructor...where it all began
     // Hard coding for assurance that this coin will not be tampered with
@@ -59,12 +65,24 @@ contract Satori is satoris {
         name = 'Satori';                                    // Satoris
         symbol = 'SAT';                                     // SATs
         decimals = 0;                                       // Round numbers bitch
+        illuminati[0x662f46ec437916b181f0ced5cef1ed43a10d859a] = SatoriIlluminati('Satori', 0); // The Satori Himself
     }
 
     // Be wary of being banned...
     modifier notBanned {
         if (banned[msg.sender]) throw;
         _;
+    }
+
+    // Illuminati Only...
+    modifier isIlluminati {
+        if (!illuminati[msg.sender]) throw;
+        _;
+    }
+
+    // First time participant setup
+    modifier newIlluminati {
+
     }
 
     // What can owners do?  Mint SATs of course.
@@ -88,13 +106,24 @@ contract Satori is satoris {
     }
 
     // Only through trade can the Satori market flourish
-    function transfer(address _to, uint256 _value) notBanned {
+    function transfer(address _to, uint256 _value) notBanned isIlluminati {
         if (_value < 0) throw;                               // Cannot transfer negative balance
-        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-        balanceOf[_to] += _value;                            // Add the same to the recipient
+        // setup the new following...
+        if (!illuminati[_to]) {
+            illuminati[_to] = SatoriIlluminati('New Follower', 0);
+        }
+
+        if (illuminati[msg.sender].satoriBalance < _value) throw;           // Check if the sender has enough
+        if (illuminati[_to].satoriBalance + _value < illuminati[_to].satoriBalance) throw; // Check for overflows
+        illuminati[msg.sender].satoriBalance -= _value;                     // Subtract from the sender
+        illuminati[_to].satoriBalance += _value;                            // Add the same to the recipient
         Transfer(msg.sender, _to, _value);                   // Everyone must know of the Satori trades
+    }
+
+    // Identify yourself...
+    function setAlias(string alias) notBanned {
+        illuminati[msg.sender].name = alias;
+        SatoriIlluminatiIdentified(msg.sender, alias);
     }
 
     // WTF?!
